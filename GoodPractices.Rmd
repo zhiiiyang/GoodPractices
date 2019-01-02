@@ -24,9 +24,13 @@ class: inverse, center, middle
 
 # Keep in touch
 
-<a href="mailto:zyang895@gmail.com"><i class="fa fa-paper-plane fa-fw"></i>&nbsp; zyang895@gmail.com</a><br>
-<a href="http://twitter.com/apreshill"><i class="fa fa-twitter fa-fw"></i>&nbsp; @zhiiiyang</a><br>
-<a href="http://github.com/zhiiiyang"><i class="fa fa-github fa-fw"></i>&nbsp; @zhiiiyang</a><br>
+<br>
+
+### `r icon::fa("twitter")` [@zhiiiyang](https://twitter.com/laeRusers)
+### `r icon::fa("github")` [zhiiiyang](https://github.com/laeRusers/)
+### `r icon::fa("envelope")` [zyang895@gmail.com](mailto:laerug@gmail.com)
+
+<br>
 
 ---
 # This talk is `not` for those who...

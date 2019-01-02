@@ -11,8 +11,6 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-    includes:
-      in_header: header.html
     #chakra: "remark.js" 
 ---
 

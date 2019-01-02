@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Good Practices in R</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Zhi Yang" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css/rladies-fonts.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/5235085b15.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Good Practices in R
+## A tutorial for Pasadena RLadies
+### Zhi Yang
+### 2019/1/9 (updated: 2019-01-01)
+
+---
+
+
+
+
+class: inverse, center, middle
+
+# Keep in touch
+
+&lt;a href="mailto:zyang895@gmail.com"&gt;&lt;i class="fa fa-paper-plane fa-fw"&gt;&lt;/i&gt;&amp;nbsp; zyang895@gmail.com&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://twitter.com/apreshill"&gt;&lt;i class="fa fa-twitter fa-fw"&gt;&lt;/i&gt;&amp;nbsp; @zhiiiyang&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://github.com/zhiiiyang"&gt;&lt;i class="fa fa-github fa-fw"&gt;&lt;/i&gt;&amp;nbsp; @zhiiiyang&lt;/a&gt;&lt;br&gt;
+
+---
+# This talk is `not` for those who...
+
+- haven't downloaded RStudio
+
+--
+
+- haven't used R for three months or worked on more than `5` projects
+
+--
+
+- expect to see a systematic review like a book
+
+---
+# This talk is actually ...
+
+--
+
+- from my daily rigmen of programming in R
+
+--
+
+- about **good** practices from my own view, aka, `biased` 
+
+
+---
+# Who am I and what do I use R for?
+
+--
+
+- A Ph.D. student in biostatistics from USC 
+
+--
+
+- I use R for &gt; 5hrs/per day and my dissertation is dependent on R
+
+--
+
+- I self-taught R in 2013 from a reproducible project in R
+
+--
+
+- I've done RMarkdown, R packages, Shiny apps, high-performance computing, data visualization, Bayesian statistics, machine learning, version control with Git and etc in R. 
+
+--
+
+- `NEW YEAR RESOLUTION`: an intermediate user who would like to become an advanced learner in 2019 🤓
+
+---
+## I know running things in RStudio, now what?
+
+--
+#### Start a new analysis 
+
+- Open RStudio and create a new R script
+- Too many R scripts in a folder
+
+--
+
+`-&gt; RStudio project`, `Workflow management`
+
+--
+#### Retrieve an old analysis
+
+- What is the name of that file again? test.R, test2.R, final.R, or project.R? 
+
+--
+
+`-&gt; Naming files`
+
+--
+#### Run an analysis in RStudio 
+- Click run bottom for a thousand times
+- Use `=` instead of ` -&gt; ` without any indentation or surrounding spaces
+
+--
+
+`-&gt; Customize RStudio`, `Code style`, `RMarkdown`
+
+---
+
+
+class: inverse, center, middle
+
+# Get Started
+
+---
+
+# Download RStudio
+https://www.rstudio.com/products/rstudio/download/
+
+![](images/rstudio.png)
+
+---
+# Don't go by default
+![](images/rstudio-never.png)
+---
+# Don't go by default
+![](images/burn_2.jpg)
+
+
+---
+# Always start with a project
+![](images/burn_1.jpg)
+
+
+---
+# Customize panes
+![](images/rstudio-panel.png)
+
+---
+## Always start with a project
+![](images/rstudio-project.png)
+
+
+---
+# Use relative paths
+###NO!
+
+```r
+pathName &lt;- "/Users/Zhi/Dropbox/PRL_GoodPractice/files/dataset-2019-01.csv"
+```
+
+--
+###YES!
+
+```r
+pathName &lt;- "files/dataset-2019-01.csv"
+```
+
+---
+# Google's R style guide
+What [Google](https://google.github.io/styleguide/Rguide.xml) suggests about the style of programming in R
+
+![](images/google-style.png)
+
+---
+# Name files 
+
+###NO!
+
+```r
+- test.R, test2.R
+- final.pdf
+- project.rmd
+- analysis20180501.r 
+```
+
+--
+###YES!
+
+```r
+- 2019-01-09_pm511a_finalproject.r
+- 01_pm511a_finalproject.r
+- analysis_pm511a_finalproject.r
+```
+
+
+---
+# Name identifiers
+###NO! 
+
+```r
+- "Variables": avg_Clicks, 
+- "Functions": calculate_avg_clicks, calculateAvgClicks
+```
+
+--
+Don't use underscores ( _ ) or hyphens ( - ) in identifiers
+
+--
+###YES!
+
+```r
+- "Variables": avgClicks, avg.clicks
+- "Functions": CalculateAvgClicks
+```
+
+--
+Generally, variable names should be nouns and function names should be verbs.
+
+---
+# Format codes (be nice to yourself 👁👁)
+
+--
+
+```r
+genRandom=function(n){rnorm(n)}
+plot(2^seq(2,10,0.5),sapply(sapply(2^seq(2,10,0.5),genRandom),mean))
+```
+
+--
+- Do use ` -&gt; ` instead of `=`
+- Do pipe `%&gt;%` instead of `((()))`
+- Do use spaces
+- Do wrap long lines
+- Do indent lines with two spaces
+
+--
+
+Instead, we can write codes like
+
+```r
+libary(magrittr)
+xVar &lt;- 2^seq(2,10,0.5)
+genRandom &lt;- function(n) {
+  rnorm(n)
+}
+
+sapply(xVar, genRandom) %&gt;%
+  sapply(mean) %&gt;%
+  plot(xVar, .)
+```
+
+---
+# Still not interested?
+The `formatR` package, by Yihui Xie, makes it easier to clean up poorly formatted code. It can’t do everything, but it can quickly get your code from terrible to pretty good. -- Hadley Wickham  
+
+
+```r
+library(formatR)
+genRandom=function(n){rnorm(n)}
+```
+
+--
+Copy the above code to clipboard and type `tidy_source(width.cutoff = 50)`
+
+
+```r
+genRandom = function(n) {
+    rnorm(n)
+}
+```
+
+---
+# Comment your codes
+
+```r
+libary(magrittr)
+*# explore the number of simulations in a wide rang-------------------------
+xVar &lt;- 2^seq(2,10,0.5)
+
+*# write a function to simulate n numbers of standard normally distribution R.V.s
+genRandom &lt;- function(n) {
+  rnorm(n)
+}
+
+*# create a plot with mean against a range of number of simulations
+sapply(xVar, genRandom) %&gt;%
+  sapply(mean) %&gt;%
+  plot(xVar, .)
+```
+Have all the library calls and hard-coded variables on the topic of the script
+
+--
+### Be nice to your future self three months from now 🤗
+
+---
+# Write loops and functions 
+
+```r
+apply
+sapply
+lapply 
+replicate
+```
+
+Have a file with functions in it and source it after loading libraries
+
+---
+# Organize files
+
+
+```r
+Project
+├── code
+├── data
+├── fig
+├── result
+```
+
+---
+# Create shortcuts
+- `Ctrl+X/C/V/Z/Y/S -&gt;` Cut/Copy/Paste/Undo/Redo/Save
+
+--
+
+- `Ctrl+Enter -&gt;`  Run the current code
+
+--
+
+- `Ctrl+Shift+K -&gt;` Knit Markdown
+
+--
+
+- `Alt + - -&gt;` &lt;-
+
+--
+
+- `Ctrl+Shift+M -&gt;` %&gt;%
+
+--
+
+- `Ctrl+Shift+F10 -&gt;` Restart R
+
+---
+# Have troubles?
+- https://stackoverflow.com/
+
+- https://support.rstudio.com
+
+- https://twitter.com/  `#rstat#`
+
+---
+# Ask questions 
+![](images/reprex.gif)
+
+
+---
+class: center, middle
+
+# More resources
+
+Beyond Basic R  **blogdown**
+https://owi.usgs.gov/blog/intro-best-practices/
+
+
+More on posting here:
+
+
+And here:
+
+
+---
+class: center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan)
+
+Template created by [Alison Hill](https://twitter.com/apreshill)
+    </textarea>
+<script src="remark.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,364 @@
+---
+title: "Good Practices in R"
+subtitle: "A tutorial for Pasadena RLadies"
+author: "Zhi Yang"
+date: "2019/1/9 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: ["default", "rladies", "rladies-fonts"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    includes:
+      in_header: header.html
+    chakra: "remark.js" 
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(tidy = FALSE, 
+                      eval = FALSE, tidy.opts=list(width.cutoff=40))
+```
+
+class: inverse, center, middle
+
+# Keep in touch
+
+<a href="mailto:zyang895@gmail.com"><i class="fa fa-paper-plane fa-fw"></i>&nbsp; zyang895@gmail.com</a><br>
+<a href="http://twitter.com/apreshill"><i class="fa fa-twitter fa-fw"></i>&nbsp; @zhiiiyang</a><br>
+<a href="http://github.com/zhiiiyang"><i class="fa fa-github fa-fw"></i>&nbsp; @zhiiiyang</a><br>
+
+---
+# This talk is `not` for those who...
+
+- haven't downloaded RStudio
+
+--
+
+- haven't used R for three months or worked on more than `5` projects
+
+--
+
+- expect to see a systematic review like a book
+
+---
+# This talk is actually ...
+
+--
+
+- from my daily rigmen of programming in R
+
+--
+
+- about **good** practices from my own view, aka, `biased` 
+
+
+---
+# Who am I and what do I use R for?
+
+--
+
+- A Ph.D. student in biostatistics from USC 
+
+--
+
+- I use R for > 5hrs/per day and my dissertation is dependent on R
+
+--
+
+- I self-taught R in 2013 from a reproducible project in R
+
+--
+
+- I've done RMarkdown, R packages, Shiny apps, high-performance computing, data visualization, Bayesian statistics, machine learning, version control with Git and etc in R. 
+
+--
+
+- `NEW YEAR RESOLUTION`: an intermediate user who would like to become an advanced learner in 2019 🤓
+
+---
+## I know running things in RStudio, now what?
+
+--
+#### Start a new analysis 
+
+- Open RStudio and create a new R script
+- Too many R scripts in a folder
+
+--
+
+`-> RStudio project`, `Workflow management`
+
+--
+#### Retrieve an old analysis
+
+- What is the name of that file again? test.R, test2.R, final.R, or project.R? 
+
+--
+
+`-> Naming files`
+
+--
+#### Run an analysis in RStudio 
+- Click run bottom for a thousand times
+- Use `=` instead of ` -> ` without any indentation or surrounding spaces
+
+--
+
+`-> Customize RStudio`, `Code style`, `RMarkdown`
+
+---
+
+
+class: inverse, center, middle
+
+# Get Started
+
+---
+
+# Download RStudio
+https://www.rstudio.com/products/rstudio/download/
+
+![](images/rstudio.png)
+
+---
+# Don't go by default
+![](images/rstudio-never.png)
+---
+# Don't go by default
+![](images/burn_2.jpg)
+
+
+---
+# Always start with a project
+![](images/burn_1.jpg)
+
+
+---
+# Customize panes
+![](images/rstudio-panel.png)
+
+---
+## Always start with a project
+![](images/rstudio-project.png)
+
+
+---
+# Use relative paths
+###NO!
+```{r}
+pathName <- "/Users/Zhi/Dropbox/PRL_GoodPractice/files/dataset-2019-01.csv"
+```
+
+--
+###YES!
+```{r}
+pathName <- "files/dataset-2019-01.csv"
+```
+
+---
+# Google's R style guide
+What [Google](https://google.github.io/styleguide/Rguide.xml) suggests about the style of programming in R
+
+![](images/google-style.png)
+
+---
+# Name files 
+
+###NO!
+```{r eval=FALSE, tidy=FALSE}
+- test.R, test2.R
+- final.pdf
+- project.rmd
+- analysis20180501.r 
+```
+
+--
+###YES!
+```{r eval=FALSE, tidy=FALSE}
+- 2019-01-09_pm511a_finalproject.r
+- 01_pm511a_finalproject.r
+- analysis_pm511a_finalproject.r
+```
+
+
+---
+# Name identifiers
+###NO! 
+```{r eval=FALSE, tidy=FALSE}
+- "Variables": avg_Clicks, 
+- "Functions": calculate_avg_clicks, calculateAvgClicks
+```
+
+--
+Don't use underscores ( _ ) or hyphens ( - ) in identifiers
+
+--
+###YES!
+```{r eval=FALSE, tidy=FALSE}
+- "Variables": avgClicks, avg.clicks
+- "Functions": CalculateAvgClicks
+```
+
+--
+Generally, variable names should be nouns and function names should be verbs.
+
+---
+# Format codes (be nice to yourself 👁👁)
+
+--
+```{r, eval = FALSE}
+genRandom=function(n){rnorm(n)}
+plot(2^seq(2,10,0.5),sapply(sapply(2^seq(2,10,0.5),genRandom),mean))
+```
+
+--
+- Do use ` -> ` instead of `=`
+- Do pipe `%>%` instead of `((()))`
+- Do use spaces
+- Do wrap long lines
+- Do indent lines with two spaces
+
+--
+
+Instead, we can write codes like
+```{r}
+libary(magrittr)
+xVar <- 2^seq(2,10,0.5)
+genRandom <- function(n) {
+  rnorm(n)
+}
+
+sapply(xVar, genRandom) %>%
+  sapply(mean) %>%
+  plot(xVar, .)
+
+```
+
+---
+# Still not interested?
+The `formatR` package, by Yihui Xie, makes it easier to clean up poorly formatted code. It can’t do everything, but it can quickly get your code from terrible to pretty good. -- Hadley Wickham  
+
+```{r}
+library(formatR)
+genRandom=function(n){rnorm(n)}
+```
+
+--
+Copy the above code to clipboard and type `tidy_source(width.cutoff = 50)`
+
+```{r}
+genRandom = function(n) {
+    rnorm(n)
+}
+```
+
+---
+# Comment your codes
+```{r, eval=FALSE}
+libary(magrittr)
+*# explore the number of simulations in a wide rang-------------------------
+xVar <- 2^seq(2,10,0.5)
+
+*# write a function to simulate n numbers of standard normally distribution R.V.s
+genRandom <- function(n) {
+  rnorm(n)
+}
+
+*# create a plot with mean against a range of number of simulations
+sapply(xVar, genRandom) %>%
+  sapply(mean) %>%
+  plot(xVar, .)
+
+```
+Have all the library calls and hard-coded variables on the topic of the script
+
+--
+### Be nice to your future self three months from now 🤗
+
+---
+# Write loops and functions 
+```{r}
+apply
+sapply
+lapply 
+replicate
+```
+
+Have a file with functions in it and source it after loading libraries
+
+---
+# Organize files
+
+```{r}
+Project
+├── code
+├── data
+├── fig
+├── result
+```
+
+---
+# Create shortcuts
+- `Ctrl+X/C/V/Z/Y/S ->` Cut/Copy/Paste/Undo/Redo/Save
+
+--
+
+- `Ctrl+Enter ->`  Run the current code
+
+--
+
+- `Ctrl+Shift+K ->` Knit Markdown
+
+--
+
+- `Alt + - ->` <-
+
+--
+
+- `Ctrl+Shift+M ->` %>%
+
+--
+
+- `Ctrl+Shift+F10 ->` Restart R
+
+---
+# Have troubles?
+- https://stackoverflow.com/
+
+- https://support.rstudio.com
+
+- https://twitter.com/  `#rstat#`
+
+---
+# Ask questions 
+![](images/reprex.gif)
+
+
+---
+class: center, middle
+
+# More resources
+
+Beyond Basic R  **blogdown**
+https://owi.usgs.gov/blog/intro-best-practices/
+
+
+More on posting here:
+
+
+And here:
+
+
+---
+class: center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan)
+
+Template created by [Alison Hill](https://twitter.com/apreshill)
+
+

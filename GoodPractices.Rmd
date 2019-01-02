@@ -13,7 +13,7 @@ output:
       countIncrementalSlides: false
     includes:
       in_header: header.html
-    chakra: "remark.js" 
+    #chakra: "remark.js" 
 ---
 
 ```{r setup, include=FALSE}

@@ -39,7 +39,7 @@ class: inverse, center, middle
 
 --
 
-- haven't used R for three months or worked on more than `5` projects
+- haven't used R for three months or worked on more than `3` projects
 
 --
 

@@ -43,7 +43,7 @@ class: inverse, center, middle
 
 --
 
-- expect to see a systematic review like a book
+- expect to see a systematic review like a book or a class
 
 ---
 # This talk is actually ...
@@ -56,6 +56,9 @@ class: inverse, center, middle
 
 - about **good** practices from my own view, aka, `biased` 
 
+--
+
+- my experiences of gradually adopting new programming habits
 
 ---
 # Who am I and what do I use R for?
@@ -75,6 +78,10 @@ class: inverse, center, middle
 --
 
 - I've done RMarkdown, R packages, Shiny apps, high-performance computing, data visualization, Bayesian statistics, machine learning, version control with Git and etc in R. 
+
+--
+
+- Some weird things I have done with R: ranking movies by ratings from my MoviePass membership, web scraping my favoriate brand of clothes, ...  
 
 --
 

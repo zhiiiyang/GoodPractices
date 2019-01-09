@@ -105,7 +105,8 @@ class: inverse, center, middle
 --
 #### Run an analysis in RStudio 
 - Click run bottom for a thousand times
-- Use `=` instead of ` -> ` without any indentation or surrounding spaces
+- Use `=` instead of ` <- ` without any indentation or surrounding spaces
+- overwelmed by seeing too much code
 
 --
 

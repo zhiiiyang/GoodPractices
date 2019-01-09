@@ -134,6 +134,10 @@ https://www.rstudio.com/products/rstudio/download/
 ![](images/rstudio.png)
 
 ---
+# Customize panes
+![](images/rstudio-panel.png)
+
+---
 # Don't go by default
 ![](images/rstudio-never.png)
 ---
@@ -145,13 +149,8 @@ https://www.rstudio.com/products/rstudio/download/
 # Always start with a project
 ![](images/burn_1.jpg)
 
-
 ---
-# Customize panes
-![](images/rstudio-panel.png)
-
----
-## Always start with a project
+# Always start with a project
 ![](images/rstudio-project.png)
 
 

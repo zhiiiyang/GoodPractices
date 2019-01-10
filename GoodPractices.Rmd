@@ -138,6 +138,10 @@ https://www.rstudio.com/products/rstudio/download/
 ![](images/rstudio-panel.png)
 
 ---
+# Customize panes
+![](images/rstudio-panel2.png)
+
+---
 # Don't go by default
 ![](images/rstudio-never.png)
 ---
@@ -164,7 +168,7 @@ pathName <- "/Users/Zhi/Dropbox/PRL_GoodPractice/files/dataset-2019-01.csv"
 --
 ###YES!
 ```{r}
-pathName <- "files/dataset-2019-01.csv"
+pathName <- "data/dataset-2019-01.csv"
 ```
 
 ---

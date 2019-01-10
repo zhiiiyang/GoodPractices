@@ -27,7 +27,7 @@ class: inverse, center, middle
 ---
 # This talk is `not` for those who...
 
-- haven't downloaded RStudio
+- haven't used RStudio
 
 --
 
@@ -35,7 +35,7 @@ class: inverse, center, middle
 
 --
 
-- expect to see a systematic review like a book or a class
+- expect to see a systematic review like a book or a workshop
 
 ---
 # This talk is actually ...
@@ -69,11 +69,11 @@ class: inverse, center, middle
 
 --
 
-- I've done RMarkdown, R packages, Shiny apps, high-performance computing, data visualization, Bayesian statistics, machine learning, version control with Git and etc in R. 
+- I've done R Markdown, R packages, Shiny apps, high-performance computing, data visualization, Bayesian statistics, machine learning, version control with Git and etc in R. 
 
 --
 
-- Some weird things I have done with R: ranking movies by ratings from my MoviePass membership, web scraping my favoriate brand of clothes, ...  
+- Some other non-academic projects with R: ranking movies by ratings from my MoviePass membership, web scraping my favoriate brand of clothes, ...  
 
 --
 
@@ -217,12 +217,12 @@ Generally, variable names should be nouns and function names should be verbs.
 
 --
 ```{r, eval = FALSE}
-genRandom=function(n){rnorm(n)}
+genRandom=function(n){rnorm(n,10,10)}
 plot(2^seq(2,10,0.5),sapply(sapply(2^seq(2,10,0.5),genRandom),mean))
 ```
 
 --
-- Do use ` -> ` instead of `=`
+- Do use ` <- ` instead of `=`
 - Do pipe `%>%` instead of `((()))`
 - Do use spaces
 - Do wrap long lines
@@ -235,7 +235,7 @@ Instead, we can write codes like
 libary(magrittr)
 xVar <- 2^seq(2,10,0.5)
 genRandom <- function(n) {
-  rnorm(n)
+  rnorm(n, mean = 10, sd = 10)
 }
 
 sapply(xVar, genRandom) %>%
@@ -250,7 +250,7 @@ The `formatR` package, by Yihui Xie, makes it easier to clean up poorly formatte
 
 ```{r}
 library(formatR)
-genRandom=function(n){rnorm(n)}
+genRandom=function(n){rnorm(n,10,10)}
 ```
 
 --
@@ -258,7 +258,7 @@ Copy the above code to clipboard and type `tidy_source(width.cutoff = 50)`
 
 ```{r}
 genRandom = function(n) {
-    rnorm(n)
+    rnorm(n, 10, 10)
 }
 ```
 
@@ -287,12 +287,27 @@ Have all the library calls and hard-coded variables on the topic of the script
 
 ---
 # Write loops and functions 
-```{r}
-apply
-sapply
-lapply 
-replicate
+`apply`, `sapply`, `lapply`, `replicate` help to declutter codes 
+
+###NO! 
+```{r eval=FALSE, tidy=FALSE}
+rnorm(10, mean = 0, sd = 1)
+rnorm(1e2, mean = 0, sd = 1)
+rnorm(1e3, mean = 0, sd = 1)
+rnorm(1e4, mean = 0, sd = 1)
 ```
+
+
+--
+###YES!
+```{r eval=FALSE, tidy=FALSE}
+n <- 10^(1:4)
+n %>% 
+  sapply(function(x) rnorm(x, mean = 0, sd = 1))
+```
+
+
+
 
 Have a file with functions in it and source it after loading libraries
 
@@ -305,6 +320,12 @@ Project
 ├── data
 ├── fig
 ├── result
+```
+
+input and output 
+```{r}
+read.csv(data/dataset.csv)
+ggsave("fig/mtcars.png")
 ```
 
 ---
@@ -340,7 +361,7 @@ Project
 - https://twitter.com/  `#rstat#`
 
 ---
-# Ask questions 
+# Ask questions reproducibly 
 ![](images/reprex.gif)
 
 

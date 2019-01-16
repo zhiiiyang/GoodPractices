@@ -20,11 +20,6 @@ knitr::opts_chunk$set(tidy = FALSE,
                       eval = FALSE, tidy.opts=list(width.cutoff=40))
 ```
 
-class: inverse, center, middle
-
-
-
----
 # This talk is `not` for those who...
 
 - haven't used RStudio
@@ -393,6 +388,5 @@ Slides created via the R package [**xaringan**](https://github.com/yihui/xaringa
 
 Template created by [Alison Hill](https://twitter.com/apreshill)
 
-# 
 
 

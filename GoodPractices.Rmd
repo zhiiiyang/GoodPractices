@@ -22,15 +22,7 @@ knitr::opts_chunk$set(tidy = FALSE,
 
 class: inverse, center, middle
 
-# Keep in touch
 
-<br>
-
-### `r icon::fa("twitter")` [@zhiiiyang](https://twitter.com/laeRusers)
-### `r icon::fa("github")` [zhiiiyang](https://github.com/laeRusers/)
-### `r icon::fa("envelope")` [zyang895@gmail.com](mailto:laerug@gmail.com)
-
-<br>
 
 ---
 # This talk is `not` for those who...
@@ -388,10 +380,19 @@ Emil Hvitfeldt's talk : https://github.com/EmilHvitfeldt/oRganized-talk
 ---
 class: center, middle
 
-# Thanks!
+# Thanks! and Keep in touch
+<br>
+
+### `r icon::fa("twitter")` [@zhiiiyang](https://twitter.com/laeRusers)
+### `r icon::fa("github")` [zhiiiyang](https://github.com/laeRusers/)
+### `r icon::fa("envelope")` [zyang895@gmail.com](mailto:laerug@gmail.com)
+
+<br>
 
 Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan)
 
 Template created by [Alison Hill](https://twitter.com/apreshill)
+
+# 
 
 
